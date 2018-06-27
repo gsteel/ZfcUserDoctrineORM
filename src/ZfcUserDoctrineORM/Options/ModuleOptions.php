@@ -18,16 +18,17 @@ class ModuleOptions extends BaseModuleOptions
 
     /**
      * @param boolean $enableDefaultEntities
+     * @return self
      */
     public function setEnableDefaultEntities($enableDefaultEntities)
     {
         $this->enableDefaultEntities = $enableDefaultEntities;
-        
+
         return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getEnableDefaultEntities()
     {
