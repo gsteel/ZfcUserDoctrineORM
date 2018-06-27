@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use ZfcUser\Entity\UserInterface;
 use ZfcUser\Mapper\User as ZfcUserMapper;
 use ZfcUserDoctrineORM\Options\ModuleOptions;
-use Zend\Stdlib\Hydrator\HydratorInterface;
+use Zend\Hydrator\HydratorInterface;
 
 class User extends ZfcUserMapper
 {
@@ -30,14 +30,14 @@ class User extends ZfcUserMapper
     {
         $er = $this->em->getRepository($this->options->getUserEntityClass());
 
-        return $er->findOneBy(array('email' => $email));
+        return $er->findOneBy(['email' => $email]);
     }
 
     public function findByUsername($username)
     {
         $er = $this->em->getRepository($this->options->getUserEntityClass());
 
-        return $er->findOneBy(array('username' => $username));
+        return $er->findOneBy(['username' => $username]);
     }
 
     public function findById($id)
@@ -47,12 +47,12 @@ class User extends ZfcUserMapper
         return $er->find($id);
     }
 
-    public function insert(UserInterface $entity)
+    public function insert(UserInterface $entity, $tableName = null, HydratorInterface $hydrator = null)
     {
         return $this->persist($entity);
     }
 
-    public function update(UserInterface $entity)
+    public function update(UserInterface $entity, $where = null, $tableName = null, HydratorInterface $hydrator = null)
     {
         return $this->persist($entity);
     }
